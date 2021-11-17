@@ -7,6 +7,7 @@ class Related extends Model {}
 Related.init({
   id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
     autoIncrement: true
   },
 
@@ -21,6 +22,7 @@ Related.init({
 }, {
   sequelize: seq
 });
+
 
 
 

@@ -7,6 +7,7 @@ class Skus extends Model {}
 Skus.init({
   id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
     autoIncrement: true
   },
   styleId: {

@@ -7,6 +7,7 @@ class Features extends Model {}
 Features.init({
   id: {
     type: DataTypes.INTEGER,
+    primaryKey: true,
     autoIncrement: true
   },
   product_id: {
