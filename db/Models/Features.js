@@ -14,7 +14,7 @@ Features.init({
     type: DataTypes.INTEGER,
     references:{
       model:"Products",
-      key: 'id'
+      key: "id"
     },
   },
   feature:{
@@ -23,7 +23,6 @@ Features.init({
   value:{
     type: DataTypes.TEXT,
   },
-
 
 }, {
   sequelize: seq
