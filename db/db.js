@@ -1,5 +1,5 @@
 const { Sequelize, Model, DataTypes } = require ('sequelize');
-const{ user, database, password } = require ('./config.js');
+const{ user, database, password } = require ('../config/config.js');
 
 
 const seq = new Sequelize(database, user, password, {
@@ -11,8 +11,8 @@ const seq = new Sequelize(database, user, password, {
 });
 
 
-seq.authenticate()
-.then(() => seq.sync())
-.catch((error) => console.log(error));
+// seq.authenticate()
+// .then(() => seq.sync())
+// .catch((error) => console.log(error));
 
 module.exports = seq;
