@@ -42,9 +42,6 @@ const getProductInfo = function(productId){
       id: productId
     },
   })
-  .then( results => {
-    productInfo
-  })
 }
 
 const getFeatures = function(productId){
