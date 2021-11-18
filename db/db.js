@@ -15,4 +15,8 @@ const seq = new Sequelize(database, user, password, {
 // .then(() => seq.sync())
 // .catch((error) => console.log(error));
 
+seq.authenticate()
+.then(() => console.log('connected!'))
+.catch((error) => console.log(error));
+
 module.exports = seq;
