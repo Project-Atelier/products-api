@@ -27,6 +27,8 @@ const getProducts = function(page, count){
 
 //get a product info
 const getProductInfo = function(productId){
+  let productInfo = [];
+
   return Products.findAll({
     attributes: [
       'id',
@@ -39,6 +41,9 @@ const getProductInfo = function(productId){
     where: {
       id: productId
     },
+  })
+  .then( results => {
+    productInfo
   })
 }
 
@@ -72,7 +77,6 @@ const getRelatedId = function(productId){
     }
     return relatedId;
   })
-
 }
 
 // [
