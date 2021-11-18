@@ -62,21 +62,6 @@ app.get('/products/:product_id/related', function (req, res) {
   })
 })
 
-
-////Test the getFeatures
-// app.get('/products/:product_id', function (req, res) {
-//   let productId = parseInt(req.params.product_id)
-
-//   ReviewApi.getFeatures(productId)
-//   .then(results => {
-//     res.status(200).json(results)
-//   })
-//   .catch(err => {
-//     console.log('err in getProducts', err)
-//     res.sendStatus(500)
-//   })
-// })
-
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
 });

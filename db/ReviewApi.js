@@ -5,7 +5,7 @@ const Related = require('../db/Models/Related');
 const Skus = require('../db/Models/Skus');
 const Styles = require('../db/Models/Styles');
 
-
+// get all products info
 const getProducts = function(page, count){
   // Skip 5 instances and fetch the 5 after that
     // Project.findAll({ offset: 5, limit: 5 });
@@ -25,7 +25,7 @@ const getProducts = function(page, count){
   })
 }
 
-
+//get a product info
 const getProductInfo = function(productId){
   return Products.findAll({
     attributes: [
