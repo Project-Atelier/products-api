@@ -22,7 +22,6 @@ const getProducts = function(page, count){
     offset: skip,
     limit: count,
   })
-
 }
 
 

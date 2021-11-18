@@ -6,7 +6,6 @@ const app = express();
 app.use(express.json());
 const PORT = 3000;
 
-
 app.get('/', function (req, res) {
   res.send('Hello World')
 });
@@ -28,7 +27,7 @@ app.get('/products', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    consol.log('err in getProducts', err)
+    console.log('err in getProducts', err)
     res.sendStatus(500)
   })
 })
