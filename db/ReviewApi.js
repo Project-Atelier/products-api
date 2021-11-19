@@ -27,7 +27,8 @@ const getProducts = function(page, count){
 
 //get a product info
 const getProductInfo = function(productId){
-  let productInfo = [];
+  let productInfo;
+  let features = [];
 
   return Products.findAll({
     attributes: [
@@ -42,8 +43,22 @@ const getProductInfo = function(productId){
       id: productId
     },
   })
+  .then(results => {
+    productInfo = results[0].dataValues
+  })
+  //get the features
+  .then(() => {return getFeatures(productId)})
+  .then( results => {
+    for(let i = 0; i < results.length; i++){
+      features.push(results[i].dataValues)
+    }
+    //combine features and product info
+    productInfo['features'] = features
+    return productInfo
+  })
 }
 
+//get product features
 const getFeatures = function(productId){
   return Features.findAll({
     attributes: [
@@ -55,6 +70,7 @@ const getFeatures = function(productId){
     },
   })
 }
+
 
 //get related product id
 const getRelatedId = function(productId){
@@ -69,26 +85,13 @@ const getRelatedId = function(productId){
     },
   })
   .then( results => {
-    for(let i=0; i < results.length; i++){
+    for(let i = 0; i < results.length; i++){
       relatedId.push(results[i].related_product_id)
     }
     return relatedId;
   })
 }
 
-// [
-//   {
-//       "feature": "Fabric",
-//       "value": "Canvas"
-//   },
-//   {
-//       "feature": "Buttons",
-//       "value": "Brass"
-//   }
-// ]
-
 module.exports.getProducts = getProducts;
 module.exports.getProductInfo = getProductInfo;
 module.exports.getRelatedId = getRelatedId;
-
-module.exports.getFeatures = getFeatures;
