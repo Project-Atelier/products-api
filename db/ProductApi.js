@@ -67,8 +67,6 @@ const getFeatures = function(productId){
 
 //get Product Styles
 const getProductStyles = function(productId){
-  let styles = {product_id : productId};
-  let results = [];
 
   return Styles.findAll({
     attributes: [
@@ -83,22 +81,27 @@ const getProductStyles = function(productId){
     },
   })
   .then( async data =>  {
-    for (let i = 0; i < data.length; i++){
-            let styleInfo = {};
+    let styles = {product_id : productId};
+    let results = [];
 
-            styleInfo['style_id'] = data[i].dataValues.id
-            styleInfo['name'] = data[i].dataValues.name
-            styleInfo['original_price'] = data[i].dataValues.original_price
-            styleInfo['sale_price'] = data[i].dataValues.sale_price
-            styleInfo['default?'] = !!data[i].dataValues.default_style
-            let photoData = await getPhotos(data[i].dataValues.id)
-            let skusData = await getSkus(data[i].dataValues.id)
-            // console.log("here is getSkus", skusData)
-            styleInfo['photos'] = photoData
-            styleInfo['skus'] = skusData
-            results.push(styleInfo)
-            styles['results'] = results
-          }
+    for (let i = 0; i < data.length; i++){
+      let styleInfo = {};
+
+      styleInfo['style_id'] = data[i].dataValues.id
+      styleInfo['name'] = data[i].dataValues.name
+      styleInfo['original_price'] = data[i].dataValues.original_price
+      styleInfo['sale_price'] = data[i].dataValues.sale_price
+      styleInfo['default?'] = !!data[i].dataValues.default_style
+
+      let photoData = await getPhotos(data[i].dataValues.id)
+      styleInfo['photos'] = photoData
+
+      let skusData = await getSkus(data[i].dataValues.id)
+      styleInfo['skus'] = skusData
+
+      results.push(styleInfo)
+    }
+    styles['results'] = results
     return styles
   })
 }
