@@ -28,7 +28,6 @@ const getProducts = function(page, count){
 //get a product info
 const getProductInfo = function(productId){
   let productInfo;
-  let features = [];
 
   return Products.findAll({
     attributes: [
@@ -43,17 +42,11 @@ const getProductInfo = function(productId){
       id: productId
     },
   })
-  .then(results => {
+  .then(async results => {
     productInfo = results[0].dataValues
-  })
-  //get the features
-  .then(() => {return getFeatures(productId)})
-  .then( results => {
-    for(let i = 0; i < results.length; i++){
-      features.push(results[i].dataValues)
-    }
-    //combine features and product info
-    productInfo['features'] = features
+    //get the features and combine with product info
+    let featureData = await getFeatures(productId)
+    productInfo['features'] = featureData
     return productInfo
   })
 }
@@ -89,41 +82,25 @@ const getProductStyles = function(productId){
       productId: productId
     },
   })
-  .then( data => {
+  .then( async data =>  {
     for (let i = 0; i < data.length; i++){
-      let styleInfo = {};
-      let photos = [];
-      let skus = [];
-      styleInfo['style_id'] = data[i].dataValues.id///////////////
-      styleInfo['name'] = data[i].dataValues.name
-      styleInfo['original_price'] = data[i].dataValues.original_price
-      styleInfo['sale_price'] = data[i].dataValues.sale_price
-      styleInfo['default?'] = !!data[i].dataValues.default_style
-      return getPhotos(data[i].dataValues.id)/////////////////
-      .then( result =>{
-          for(let j = 0; j < result.length; j++){
-            photos.push(result[j].dataValues)
-            // console.log(photos)
+            let styleInfo = {};
+
+            styleInfo['style_id'] = data[i].dataValues.id
+            styleInfo['name'] = data[i].dataValues.name
+            styleInfo['original_price'] = data[i].dataValues.original_price
+            styleInfo['sale_price'] = data[i].dataValues.sale_price
+            styleInfo['default?'] = !!data[i].dataValues.default_style
+            let photoData = await getPhotos(data[i].dataValues.id)
+            let skusData = await getSkus(data[i].dataValues.id)
+            // console.log("here is getSkus", skusData)
+            styleInfo['photos'] = photoData
+            styleInfo['skus'] = skusData
+            results.push(styleInfo)
+            styles['results'] = results
           }
-        })
-        .then( () => {
-          styleInfo['photo'] = photos
-        })
-        .then( () => {return getSkus(data[i].dataValues.id)})////////////////
-        .then(result => {
-          for(let k = 0; k < result.length; k++){
-            skus.push(result[k].dataValues)
-          }
-        })
-        .then( () => {
-          styleInfo['skus'] = skus
-          return styleInfo
-        })
-        results.push(styleInfo)
-        styles['results'] = results
-        return styles
-     }
-   })
+    return styles
+  })
 }
 
 
@@ -144,12 +121,21 @@ const getPhotos = function(id){
 const getSkus = function(id){
   return Skus.findAll({
     attributes: [
+      'id',
       'quantity',
       'size',
     ],
     where: {
       styleId: id
     },
+  })
+  .then( result =>{
+    let skus = {};
+    for(let i = 0; i < result.length; i++){
+      skus[`${result[i].id}`]= result[i].dataValues
+      delete skus[`${result[i].id}`].id
+    }
+    return skus
   })
 }
 
