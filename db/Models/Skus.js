@@ -13,7 +13,7 @@ Skus.init({
   styleId: {
     type: DataTypes.INTEGER,
     references:{
-      model:"Products",
+      model:"Styles",
       key: 'id'
     },
   },
