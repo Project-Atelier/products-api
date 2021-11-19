@@ -1,6 +1,6 @@
 const express = require('express');
 const seq = require('../db/db.js');
-const ReviewApi = require('../db/ReviewApi.js');
+const ProductApi = require('../db/ProductApi.js');
 
 const app = express();
 app.use(express.json());
@@ -12,18 +12,10 @@ app.get('/', function (req, res) {
 
 // get all products info
 app.get('/products', function (req, res) {
-  let page = 1;
-  let count = 5;
+  let page = parseInt(req.query.page) || 1;
+  let count = parseInt(req.query.count) || 5;
 
-  if(req.query.page){
-    page = parseInt(req.query.page)
-  };
-
-  if(req.query.count){
-    count = parseInt(req.query.count)
-  };
-
-  ReviewApi.getProducts(page, count)
+  ProductApi.getProducts(page, count)
   .then(results => {
     res.status(200).json(results)
   })
@@ -37,7 +29,7 @@ app.get('/products', function (req, res) {
 app.get('/products/:product_id', function (req, res) {
   let productId = parseInt(req.params.product_id)
 
-  ReviewApi.getProductInfo(productId)
+  ProductApi.getProductInfo(productId)
   .then(results => {
     res.status(200).json(results)
   })
@@ -52,7 +44,7 @@ app.get('/products/:product_id', function (req, res) {
 app.get('/products/:product_id/related', function (req, res) {
   let productId = parseInt(req.params.product_id)
 
-  ReviewApi.getRelatedId(productId)
+  ProductApi.getRelatedId(productId)
   .then(results => {
     res.status(200).json(results)
   })
@@ -61,6 +53,21 @@ app.get('/products/:product_id/related', function (req, res) {
     res.sendStatus(500)
   })
 })
+
+//get Product Styles
+app.get('/products/:product_id/styles', function (req, res) {
+  let productId = parseInt(req.params.product_id)
+
+  ProductApi.getProductStyles(productId)
+  .then(results => {
+    res.status(200).json(results)
+  })
+  .catch(err => {
+    console.log('err in getRelatedId', err)
+    res.sendStatus(500)
+  })
+})
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)

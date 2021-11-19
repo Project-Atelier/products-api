@@ -13,7 +13,7 @@ Photos.init({
   styleId: {
     type: DataTypes.INTEGER,
     references:{
-      model:"Styles",
+      model:"Products",
       key: 'id'
     },
   },
@@ -23,10 +23,10 @@ Photos.init({
   thumbnail_url:{
     type: DataTypes.TEXT,
   },
-
-
 }, {
   sequelize: seq
 });
 
 module.exports = Photos;
+
+
