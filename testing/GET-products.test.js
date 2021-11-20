@@ -10,6 +10,7 @@ it('should return status code 200', async () => {
 
 
 //https://pactumjs.github.io/#/response-validation?id=expectjsonlike
+//https://pactumjs.github.io/#/response-validation?id=assert-expressions
 it('should return all products info', async () => {
   await pactum.spec()
     .get('http://localhost:3000/products/')
