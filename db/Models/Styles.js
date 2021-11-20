@@ -1,5 +1,5 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const seq = require('../db.js');
+const { Model, DataTypes } = require('sequelize');
+const seq = require('../index.js');
 
 
 class Styles extends Model {}

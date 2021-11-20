@@ -1,5 +1,5 @@
 const express = require('express');
-const seq = require('../db/db.js');
+const seq = require('../db/index.js');
 const ProductApi = require('../db/ProductApi.js');
 
 const app = express();
@@ -34,7 +34,7 @@ app.get('/products/:product_id', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProducts', err)
+    console.log('err in getProductInfo', err)
     res.sendStatus(500)
   })
 })
@@ -63,7 +63,7 @@ app.get('/products/:product_id/styles', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getRelatedId', err)
+    console.log('err in getProductStyles', err)
     res.sendStatus(500)
   })
 })
