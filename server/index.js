@@ -1,6 +1,8 @@
+const newrelic = require('newrelic')
 const express = require('express');
 const seq = require('../db/index.js');
 const ProductApi = require('../db/ProductApi.js');
+
 
 const app = express();
 app.use(express.json());
