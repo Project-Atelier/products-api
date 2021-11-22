@@ -26,3 +26,4 @@ it('should return all products info', async () => {
     ])
     .expectStatus(200);
 });
+

@@ -57,7 +57,7 @@ app.get('/products/:product_id/related', function (req, res) {
 })
 
 //get Product Styles
-app.get('/products/:product_id/styles', function (req, res) {
+app.get(`/products/:product_id/styles`, function (req, res) {
   let productId = parseInt(req.params.product_id)
 
   ProductApi.getProductStyles(productId)
