@@ -7,7 +7,8 @@ const seq = new Sequelize(database, user, password, {
     host: '/tmp',
     define: {
       timestamps: false
-    }
+    },
+    logging: false
 });
 
 

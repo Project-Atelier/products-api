@@ -22,7 +22,7 @@ app.get('/products', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProducts', err)
+    // console.log('err in getProducts', err)
     res.sendStatus(500)
   })
 })
@@ -36,7 +36,7 @@ app.get('/products/:product_id', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProductInfo', err)
+    // console.log('err in getProductInfo', err)
     res.sendStatus(500)
   })
 })
@@ -51,7 +51,7 @@ app.get('/products/:product_id/related', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getRelatedId', err)
+    // console.log('err in getRelatedId', err)
     res.sendStatus(500)
   })
 })
@@ -65,7 +65,7 @@ app.get(`/products/:product_id/styles`, function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProductStyles', err)
+    // console.log('err in getProductStyles', err)
     res.sendStatus(500)
   })
 })
