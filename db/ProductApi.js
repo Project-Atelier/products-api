@@ -208,7 +208,7 @@ const getRelatedId = function(productId){
   })
   .then( results => {
     for(let i = 0; i < results.length; i++){
-      relatedId.push(results[i].related_product_id)
+      relatedId.push(Object.values(results[i]))
     }
     return relatedId;
   })
