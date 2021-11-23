@@ -48,6 +48,7 @@ const getProductInfo = function(productId){
   //get the features
   .then(() => {return getFeatures(productId)})
   .then( results => {
+    let features = [];
     for(let i = 0; i < results.length; i++){
       features.push(results[i].dataValues)
     }
@@ -98,7 +99,7 @@ const getProductStyles = function(productId){
   .then(data =>  {
       let styles = {product_id : productId};
       let results = [];
-      let stylesInfo = []
+      let stylesInfo = [];
       let temp = [];
 
       for (let i = 0; i < data.length; i++){
@@ -116,10 +117,12 @@ const getProductStyles = function(productId){
       }
       return Promise.all(temp)
           .then(result => {
-            for(let i = 0; i < data.length; i++){
-              stylesInfo[i]['photos'] = result[0]
-              stylesInfo[i]['skus'] = result[1]
-              results.push(stylesInfo[i])
+            let k = 0
+            for(let j = 0; j < result.length; j += 2){
+              stylesInfo[k]['photos'] = result[j]
+              stylesInfo[k]['skus'] = result[j+1]
+              results.push(stylesInfo[k])
+              k += 1
             }
             styles['results'] = results
             return styles
@@ -129,30 +132,30 @@ const getProductStyles = function(productId){
 
 
 // //async await version for line 98~127
-// .then( async data =>  {
-//   let styles = {product_id : productId};
-//   let results = [];
+//   .then( async data =>  {
+//     let styles = {product_id : productId};
+//     let results = [];
 
-//   for (let i = 0; i < data.length; i++){
-//     let styleInfo = {};
+//     for (let i = 0; i < data.length; i++){
+//       let styleInfo = {};
 
-//     styleInfo['style_id'] = data[i].dataValues.id
-//     styleInfo['name'] = data[i].dataValues.name
-//     styleInfo['original_price'] = data[i].dataValues.original_price
-//     styleInfo['sale_price'] = data[i].dataValues.sale_price
-//     styleInfo['default?'] = !!data[i].dataValues.default_style
+//       styleInfo['style_id'] = data[i].dataValues.id
+//       styleInfo['name'] = data[i].dataValues.name
+//       styleInfo['original_price'] = data[i].dataValues.original_price
+//       styleInfo['sale_price'] = data[i].dataValues.sale_price
+//       styleInfo['default?'] = !!data[i].dataValues.default_style
 
-//     let photoData = await getPhotos(data[i].dataValues.id)
-//     styleInfo['photos'] = photoData
+//       let photoData = await getPhotos(data[i].dataValues.id)
+//       styleInfo['photos'] = photoData
 
-//     let skusData = await getSkus(data[i].dataValues.id)
-//     styleInfo['skus'] = skusData
+//       let skusData = await getSkus(data[i].dataValues.id)
+//       styleInfo['skus'] = skusData
 
-//     results.push(styleInfo)
-//   }
-//   styles['results'] = results
-//   return styles
-// })
+//       results.push(styleInfo)
+//     }
+//     styles['results'] = results
+//     return styles
+//   })
 // }
 
 
