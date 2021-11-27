@@ -1,5 +1,5 @@
 import http from 'k6/http';
-import { sleep, check } from 'k6';
+import { sleep } from 'k6';
 
 export const options = {
   // //Running a 15-second, 10-virtual user load test

@@ -41,6 +41,11 @@ Styles.init({
   },
 
 }, {
+  indexes: [
+    {
+      fields: ['productId']
+    },
+  ],
   sequelize: seq
 });
 
