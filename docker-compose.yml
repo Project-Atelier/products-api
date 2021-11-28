@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB=production_db
+      - DB_USERNAME=devonl
+      - DB_PASSWORD=1234
+    volumes:
+      - postgres_data:/app/server/userFiles
+  postgres:
+    image: "postgres:9.5"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=production_db
+      - POSTGRES_USER=devonl
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - postgres_data:/opt/homebrew/var/postgres
