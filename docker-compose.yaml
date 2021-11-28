@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  db:
+    image: postgres
+    eonviornment:
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: devonl
+  volumes:
