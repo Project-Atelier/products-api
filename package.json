@@ -16,7 +16,8 @@
     "pactum": "^3.1.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "nodemon": "nodemon server/index.js",
     "test": "jest"
   },
   "repository": {

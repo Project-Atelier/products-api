@@ -30,5 +30,38 @@ Related.init({
 
 
 
-
 module.exports = Related;
+
+
+// const { Sequelize } = require('sequelize');
+// const seq = require('../index.js');
+
+
+// const Products = seq.define('Product', {
+//   id: {
+//     type: Sequelize.INTEGER,
+//     primaryKey: true,
+//     autoIncrement: true
+//   },
+//   name:{
+//     type: Sequelize.TEXT,
+//     allowNull: false,
+//   },
+//   slogan:{
+//     type: Sequelize.TEXT,
+//   },
+//   description:{
+//     type: Sequelize.TEXT,
+//   },
+//   category:{
+//     type: Sequelize.TEXT,
+//     allowNull: false,
+//   },
+//   default_price: {
+//     type: Sequelize.INTEGER,
+//     allowNull: false,
+//   },
+// })
+
+
+// module.exports = Products;

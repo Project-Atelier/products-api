@@ -1,13 +1,9 @@
-FROM node
-RUN apt-get update
+FROM node:14
 
 WORKDIR /app
 
-COPY package.json /app
-COPY package-lock.json /app
-RUN npm
-
 COPY . /app
 
-EXPOSE 3000
-CMD ["node", "server/index.js"]
+RUN npm install
+
+CMD ["node", "/app/server/index.js"]

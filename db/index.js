@@ -1,10 +1,10 @@
 const { Sequelize } = require ('sequelize');
-const{ user, database, password } = require ('../config/config.js');
+// const{ user, database, password } = require ('../config/config.js');
 
 
-const seq = new Sequelize(database, user, password, {
+const seq = new Sequelize(process.env.PGDATABASE, process.env.PGUSER, process.env.PGPASSWORD, {
     dialect: 'postgres',
-    host: '/tmp',
+    host: process.env.PGHOST,
     define: {
       timestamps: false
     },
@@ -12,12 +12,12 @@ const seq = new Sequelize(database, user, password, {
 });
 
 
-// seq.authenticate()
-// .then(() => seq.sync())
-// .catch((error) => console.log(error));
-
 seq.authenticate()
-.then(() => console.log('connected!'))
+.then(() => seq.sync())
 .catch((error) => console.log(error));
+
+// seq.authenticate()
+// .then(() => console.log('connected!'))
+// .catch((error) => console.log(error));
 
 module.exports = seq;
