@@ -22,5 +22,20 @@ COPY "Products" (id, name, slogan, description, category, default_price) FROM 'f
 COPY "Styles" (id, "productId", name, sale_price, original_price, default_style) FROM 'filepath/styles.csv' WITH (delimiter ',' csv header null 'null');
 ```
 
+```sh
+COPY "Relateds" (id, current_product_id, related_product_id) FROM 'filepath/related.csv' WITH (delimiter ',' csv header);
+```
+
+```sh
+COPY "Features" (id, "product_id", feature, value) FROM 'filepath/features.csv' WITH (delimiter ',' csv header null 'null');
+```
+
+```sh
+COPY "Skus" (id, "styleId", size, quantity) FROM 'filepath/skus.csv' WITH (delimiter ',' csv header null 'null');
+```
+
+```sh
+COPY "Photos" (id, "styleId", url, thumbnail_url) FROM 'filepath/photos.csv' WITH (delimiter ',' csv header null 'null');
+```
 
 
