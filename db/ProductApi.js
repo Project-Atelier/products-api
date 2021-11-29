@@ -124,6 +124,11 @@ const getProductStyles = function(productId){
               results.push(stylesInfo[k])
               k += 1
             }
+            // console.log(result)
+            // for(let j = 0; j < result.length; j ++){
+            //   stylesInfo[j]['skus'] = result[j]
+            //   results.push(stylesInfo[j])
+            // }
             styles['results'] = results
             return styles
           })
@@ -208,7 +213,7 @@ const getRelatedId = function(productId){
   })
   .then( results => {
     for(let i = 0; i < results.length; i++){
-      relatedId.push(Object.values(results[i]))
+      relatedId.push(results[i].related_product_id)
     }
     return relatedId;
   })
