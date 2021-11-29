@@ -6,7 +6,7 @@ const ProductApi = require('../db/ProductApi.js');
 
 const app = express();
 app.use(express.json());
-const PORT = 3000;
+const PORT = 3100;
 
 app.get('/', function (req, res) {
   res.send('Hello World')
