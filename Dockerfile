@@ -1,9 +1,5 @@
-FROM node:14
+FROM postgres
 
 WORKDIR /app
 
-COPY . /app
-
-RUN npm install
-
-CMD ["node", "/app/server/index.js"]
+COPY  /Users/dl/Downloads/csv /app
