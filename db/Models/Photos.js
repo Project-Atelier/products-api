@@ -26,7 +26,7 @@ Photos.init({
 }, {
   indexes: [
     {
-      fields: ['styleId']
+      fields: ['styleId'],
     },
   ],
   sequelize: seq
