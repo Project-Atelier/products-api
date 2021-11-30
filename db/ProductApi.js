@@ -42,14 +42,31 @@ const getProductInfo = function(productId){
       id: productId
     },
   })
-  .then(async results => {
-    productInfo = results[0].dataValues
-    //get the features and combine with product info
-    let featureData = await getFeatures(productId)
-    productInfo['features'] = featureData
+  .then(results => {
+  productInfo = results[0].dataValues
+  })
+  //get the features
+  .then(() => {return getFeatures(productId)})
+  .then( results => {
+    let features = [];
+    for(let i = 0; i < results.length; i++){
+      features.push(results[i].dataValues)
+    }
+    //combine features and product info
+    productInfo['features'] = features
     return productInfo
   })
 }
+// //async await version to replace line 45~56
+//   .then(async results => {
+//     productInfo = results[0].dataValues
+//     //get the features and combine with product info
+//     let featureData = await getFeatures(productId)
+//     productInfo['features'] = featureData
+//     return productInfo
+//   })
+// }
+
 
 //get product features
 const getFeatures = function(productId){
@@ -63,7 +80,6 @@ const getFeatures = function(productId){
     },
   })
 }
-
 
 //get Product Styles
 const getProductStyles = function(productId){
@@ -80,31 +96,72 @@ const getProductStyles = function(productId){
       productId: productId
     },
   })
-  .then( async data =>  {
-    let styles = {product_id : productId};
-    let results = [];
+  .then(data =>  {
+      let styles = {product_id : productId};
+      let results = [];
+      let stylesInfo = [];
+      let temp = [];
 
-    for (let i = 0; i < data.length; i++){
-      let styleInfo = {};
+      for (let i = 0; i < data.length; i++){
+        let info = {};
 
-      styleInfo['style_id'] = data[i].dataValues.id
-      styleInfo['name'] = data[i].dataValues.name
-      styleInfo['original_price'] = data[i].dataValues.original_price
-      styleInfo['sale_price'] = data[i].dataValues.sale_price
-      styleInfo['default?'] = !!data[i].dataValues.default_style
+        info['style_id'] = data[i].dataValues.id
+        info['name'] = data[i].dataValues.name
+        info['original_price'] = data[i].dataValues.original_price
+        info['sale_price'] = data[i].dataValues.sale_price
+        info['default?'] = !!data[i].dataValues.default_style
+        stylesInfo.push(info)
 
-      let photoData = await getPhotos(data[i].dataValues.id)
-      styleInfo['photos'] = photoData
-
-      let skusData = await getSkus(data[i].dataValues.id)
-      styleInfo['skus'] = skusData
-
-      results.push(styleInfo)
-    }
-    styles['results'] = results
-    return styles
-  })
+        temp.push(getPhotos(data[i].dataValues.id))
+        temp.push(getSkus(data[i].dataValues.id))
+      }
+      return Promise.all(temp)
+          .then(result => {
+            let k = 0
+            for(let j = 0; j < result.length; j += 2){
+              stylesInfo[k]['photos'] = result[j]
+              stylesInfo[k]['skus'] = result[j+1]
+              results.push(stylesInfo[k])
+              k += 1
+            }
+            // console.log(result)
+            // for(let j = 0; j < result.length; j ++){
+            //   stylesInfo[j]['skus'] = result[j]
+            //   results.push(stylesInfo[j])
+            // }
+            styles['results'] = results
+            return styles
+          })
+   })
 }
+
+
+// //async await version for line 98~127
+//   .then( async data =>  {
+//     let styles = {product_id : productId};
+//     let results = [];
+
+//     for (let i = 0; i < data.length; i++){
+//       let styleInfo = {};
+
+//       styleInfo['style_id'] = data[i].dataValues.id
+//       styleInfo['name'] = data[i].dataValues.name
+//       styleInfo['original_price'] = data[i].dataValues.original_price
+//       styleInfo['sale_price'] = data[i].dataValues.sale_price
+//       styleInfo['default?'] = !!data[i].dataValues.default_style
+
+//       let photoData = await getPhotos(data[i].dataValues.id)
+//       styleInfo['photos'] = photoData
+
+//       let skusData = await getSkus(data[i].dataValues.id)
+//       styleInfo['skus'] = skusData
+
+//       results.push(styleInfo)
+//     }
+//     styles['results'] = results
+//     return styles
+//   })
+// }
 
 
 //get photos
@@ -166,3 +223,5 @@ module.exports.getProducts = getProducts;
 module.exports.getProductInfo = getProductInfo;
 module.exports.getRelatedId = getRelatedId;
 module.exports.getProductStyles = getProductStyles;
+
+

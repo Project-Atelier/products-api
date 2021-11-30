@@ -1,10 +1,12 @@
+const newrelic = require('newrelic')
 const express = require('express');
-const seq = require('../db/db.js');
+const seq = require('../db/index.js');
 const ProductApi = require('../db/ProductApi.js');
+
 
 const app = express();
 app.use(express.json());
-const PORT = 3000;
+const PORT = 3100;
 
 app.get('/', function (req, res) {
   res.send('Hello World')
@@ -20,7 +22,7 @@ app.get('/products', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProducts', err)
+    // console.log('err in getProducts', err)
     res.sendStatus(500)
   })
 })
@@ -34,7 +36,7 @@ app.get('/products/:product_id', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getProducts', err)
+    // console.log('err in getProductInfo', err)
     res.sendStatus(500)
   })
 })
@@ -49,13 +51,13 @@ app.get('/products/:product_id/related', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getRelatedId', err)
+    // console.log('err in getRelatedId', err)
     res.sendStatus(500)
   })
 })
 
 //get Product Styles
-app.get('/products/:product_id/styles', function (req, res) {
+app.get(`/products/:product_id/styles`, function (req, res) {
   let productId = parseInt(req.params.product_id)
 
   ProductApi.getProductStyles(productId)
@@ -63,7 +65,7 @@ app.get('/products/:product_id/styles', function (req, res) {
     res.status(200).json(results)
   })
   .catch(err => {
-    console.log('err in getRelatedId', err)
+    // console.log('err in getProductStyles', err)
     res.sendStatus(500)
   })
 })

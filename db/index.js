@@ -1,4 +1,4 @@
-const { Sequelize, Model, DataTypes } = require ('sequelize');
+const { Sequelize } = require ('sequelize');
 const{ user, database, password } = require ('../config/config.js');
 
 
@@ -7,7 +7,8 @@ const seq = new Sequelize(database, user, password, {
     host: '/tmp',
     define: {
       timestamps: false
-    }
+    },
+    logging: false
 });
 
 
