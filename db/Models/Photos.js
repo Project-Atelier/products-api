@@ -27,6 +27,7 @@ Photos.init({
   indexes: [
     {
       fields: ['styleId'],
+      using: 'hash'
     },
   ],
   sequelize: seq

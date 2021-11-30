@@ -12,7 +12,7 @@ export const options = {
       rate: 200, // 200 RPS, since timeUnit is the default 1s
       preAllocatedVUs: 200,
       duration: '30s',
-      maxVUs: 10000,
+      // maxVUs: 10000,
     },
   },
 };
@@ -20,5 +20,5 @@ export const options = {
 
 export default function () {
   let randomId = Math.floor(Math.random() * 100000)
-  const res = http.get(`http://localhost:3000/products/${randomId}/styles`);
+  const res = http.get(`http://localhost:3100/products/${randomId}/styles`);
 }

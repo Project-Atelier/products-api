@@ -9,10 +9,10 @@ export const options = {
   scenarios: {
     contacts: {
       executor: 'constant-arrival-rate',
-      rate: 400, // 200 RPS, since timeUnit is the default 1s
-      preAllocatedVUs: 400,
+      rate: 1000, // 200 RPS, since timeUnit is the default 1s
+      preAllocatedVUs: 1000,
       duration: '30s',
-      maxVUs: 10000,
+      // maxVUs: 10000,
     },
   },
 };
@@ -20,5 +20,5 @@ export const options = {
 
 export default function () {
   let randomId = Math.floor(Math.random() * 100000)
-  const res = http.get(`http://localhost:3000/products/${randomId}`);
+  const res = http.get(`http://localhost:3100/products/${randomId}`);
 }

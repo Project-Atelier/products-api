@@ -42,7 +42,8 @@ Styles.init({
 }, {
   indexes: [
     {
-      fields: ['productId']
+      fields: ['productId'],
+      using: 'hash'
     },
   ],
   sequelize: seq
