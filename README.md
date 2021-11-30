@@ -27,7 +27,7 @@ COPY "Relateds" (id, current_product_id, related_product_id) FROM 'filepath/rela
 ```
 
 ```sh
-COPY "Features" (id, "product_id", feature, value) FROM 'filepath/features.csv' WITH (delimiter ',' csv header null 'null');
+COPY "Features" (id, product_id, feature, value) FROM 'filepath/features.csv' WITH (delimiter ',' csv header null 'null');
 ```
 
 ```sh
