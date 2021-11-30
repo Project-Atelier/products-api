@@ -24,6 +24,11 @@ Photos.init({
     type: DataTypes.TEXT,
   },
 }, {
+  indexes: [
+    {
+      fields: ['styleId'],
+    },
+  ],
   sequelize: seq
 });
 

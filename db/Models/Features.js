@@ -23,8 +23,12 @@ Features.init({
   value:{
     type: DataTypes.TEXT,
   },
-
 }, {
+  indexes: [
+    {
+      fields: ['product_id']
+    },
+  ],
   sequelize: seq
 });
 
