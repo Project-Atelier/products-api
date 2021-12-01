@@ -22,8 +22,7 @@ Related.init({
 }, {
   indexes: [
     {
-      fields: ['current_product_id'],
-      using: 'hash'
+      fields: ['current_product_id']
     },
   ],
   sequelize: seq

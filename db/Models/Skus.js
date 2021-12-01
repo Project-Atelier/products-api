@@ -32,8 +32,7 @@ Skus.init({
 }, {
   indexes: [
     {
-      fields: ['styleId'],
-      using: 'hash'
+      fields: ['styleId']
     },
   ],
   sequelize: seq

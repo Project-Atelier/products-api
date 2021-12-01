@@ -26,8 +26,7 @@ Features.init({
 }, {
   indexes: [
     {
-      fields: ['product_id'],
-      using: 'hash'
+      fields: ['product_id']
     },
   ],
   sequelize: seq
