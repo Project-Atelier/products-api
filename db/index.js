@@ -1,5 +1,5 @@
 const { Sequelize } = require ('sequelize');
-const{ user, database, password } = require ('../config/config.js');
+const{ user, database, password } = require ('../config/aws-config.js');
 
 
 const seq = new Sequelize(database, user, password, {
