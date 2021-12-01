@@ -4,14 +4,14 @@ const pactum = require('pactum');
 it('should return status code 200', async () => {
   await pactum.spec()
     .withMethod('GET')
-    .withPath('http://localhost:3000/products/1')
+    .withPath('http://localhost:3100/products/1')
     .expectStatus(200);
 });
 
 
 it('should return a product info', async () => {
   await pactum.spec()
-    .get('http://localhost:3000/products/1')
+    .get('http://localhost:3100/products/1')
     .expectJsonLike(
       {
         id: 'typeof $V === "number"',

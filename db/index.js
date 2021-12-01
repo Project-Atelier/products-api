@@ -1,10 +1,11 @@
 const { Sequelize } = require ('sequelize');
-const{ user, database, password } = require ('../config/config.js');
+const{ user, database, password } = require ('../config/aws-config.js');
 
 
 const seq = new Sequelize(database, user, password, {
     dialect: 'postgres',
-    host: '/tmp',
+    host: 'ec2-18-222-212-212.us-east-2.compute.amazonaws.com',
+    port: 5432,
     define: {
       timestamps: false
     },

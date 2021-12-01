@@ -4,7 +4,7 @@ const pactum = require('pactum');
 it('should return status code 200', async () => {
   await pactum.spec()
     .withMethod('GET')
-    .withPath('http://localhost:3000/products/')
+    .withPath('http://localhost:3100/products/')
     .expectStatus(200);
 });
 
@@ -13,7 +13,7 @@ it('should return status code 200', async () => {
 //https://pactumjs.github.io/#/response-validation?id=assert-expressions
 it('should return all products info', async () => {
   await pactum.spec()
-    .get('http://localhost:3000/products/')
+    .get('http://localhost:3100/products/')
     .expectJsonLike([
       {
         id: 'typeof $V === "number"',
