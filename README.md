@@ -27,7 +27,12 @@ Part of a team tasked with building scalable microservices that replaced the leg
   - One instance hosting Postgres database
   - One instance running NGINX with least connections load balancing and caching enabled.
   - Three instances running the node server with the API
+  - 
+## Test Results
+- Local stress test
+![截屏2021-11-30 11 22 17](https://user-images.githubusercontent.com/89163211/147209185-ff96edef-8baa-46ff-a16d-c7b776644474.png)
 
+- Remote stress test
 ![截屏2021-12-02 14 10 38](https://user-images.githubusercontent.com/89163211/147209031-7d8026e4-409e-44f9-9340-460fa376407d.png)
 
 ## Building and running
