@@ -10,6 +10,13 @@ Part of a team tasked with building scalable microservices that replaced the leg
 ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
+
+## Other Libraries Used
+- Loader.io
+- New Relic
+- K6
+- Pactum
 
 ## Project Accomplishments
 - Seeded a PostgreSQL database with over 7 million records
@@ -22,7 +29,7 @@ Part of a team tasked with building scalable microservices that replaced the leg
   - Three instances running the node server with the API
 
 
-![截屏2021-12-02 14 10 38](https://user-images.githubusercontent.com/89163211/147205819-9fc0192d-689c-48a2-bd17-8791e252add6.png)
+!(https://user-images.githubusercontent.com/89163211/147205819-9fc0192d-689c-48a2-bd17-8791e252add6.png)
 
 ## Building and running
 First install dependencies:
