@@ -63,8 +63,8 @@ node -r newrelic server/index.js
 ```
 
 Start Stress Testing with K6:
-// Change into testing directory
 ```sh
+// Change into testing directory
 cd testing/k6
 k6 run <file name>
 ```
