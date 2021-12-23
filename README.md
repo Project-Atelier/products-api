@@ -21,10 +21,21 @@ Part of a team tasked with building scalable microservices that replaced the leg
   - One instance running NGINX with least connections load balancing and caching enabled.
   - Three instances running the node server with the API
 
+
 ![截屏2021-12-02 14 10 38](https://user-images.githubusercontent.com/89163211/147205819-9fc0192d-689c-48a2-bd17-8791e252add6.png)
 
+## Building and running
+First install dependencies:
+```sh
+npm install
+```
+Start Application:
+```sh
+npm run start
+```
+
 ## PostgresSQL 
-import data, order maters
+Import data(order maters):
 
 ```sh
 COPY "Products" (id, name, slogan, description, category, default_price) FROM 'filepath/product.csv' WITH (delimiter ',' csv header);
@@ -39,6 +50,25 @@ COPY "Skus" (id, "styleId", size, quantity) FROM 'filepath/skus.csv' WITH (delim
 
 COPY "Photos" (id, "styleId", url, thumbnail_url) FROM 'filepath/photos.csv' WITH (delimiter ',' csv header null 'null');
 ```
+
+## Test
+Run Jest Test Code:
+```sh
+npm run test
+```
+
+Connect to New Relic:
+```sh
+node -r newrelic server/index.js
+```
+
+Start Stress Testing with K6:
+// Change into testing directory
+```sh
+cd testing/k6
+k6 run <file name>
+```
+
 
 
 
