@@ -28,8 +28,7 @@ Part of a team tasked with building scalable microservices that replaced the leg
   - One instance running NGINX with least connections load balancing and caching enabled.
   - Three instances running the node server with the API
 
-
-!(https://user-images.githubusercontent.com/89163211/147205819-9fc0192d-689c-48a2-bd17-8791e252add6.png)
+![截屏2021-12-02 14 10 38](https://user-images.githubusercontent.com/89163211/147209031-7d8026e4-409e-44f9-9340-460fa376407d.png)
 
 ## Building and running
 First install dependencies:
