@@ -43,7 +43,7 @@ Start Application:
 npm run start
 ```
 
-## PostgresSQL 
+## PostgreSQL 
 Import data(order maters):
 
 ```sh
