@@ -2,7 +2,7 @@
 Part of a team tasked with building scalable microservices that replaced the legacy monolithic API for an e-commerce platform to handle the increase in growing traffic. This is for the reviews section of the API and was stress tested using only EC2 t2.micro instances.
 
 ## Project Accomplishments
-- Seeded a PostgreSQL database with over ~35 million records
+- Seeded a PostgreSQL database with over 7 million records
 - Optimized raw SQL query execution times to average < 1ms per query using indexes, joins and PostgreSQL JSON functions
 - Locally optimized to 1000 requests per second with <20 ms latency
 Improved throughput to 10,000 requests per second with <50 ms latency and 0% error rate when deployed and horizontally scaled
